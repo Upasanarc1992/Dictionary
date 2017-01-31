@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.upasana.home.Dictionary.MainActivity">
+
+
+    <LinearLayout
+        android:id="@+id/l"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryLight"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+            android:orientation="horizontal">
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:elevation="10dp"
+                    android:background="?attr/colorPrimary"
+                    app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            </android.support.design.widget.AppBarLayout>
+
+
+            <include layout="@layout/content_main" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="40"
+            android:background="#ffffff"
+            android:elevation="5dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edittext"
+                android:background="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top|left"
+                android:textSize="20sp"
+                android:hint="Type Your Text ..."
+                android:layout_marginBottom="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="50"
+            android:elevation="5dp"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary">
+
+
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40dp"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="15sp"
+                android:scrollHorizontally="true"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+    android:id="@+id/fab_go"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/send"
+    app:layout_anchor="@id/ll"
+    app:layout_anchorGravity="bottom|end" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/speak1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/vol2"
+        app:fabSize="mini"
+        app:backgroundTint="#ffffff"
+        app:layout_anchor="@id/tv"
+        app:layout_anchorGravity="center|bottom" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/speak2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/vol1"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="mini"
+        app:elevation="6dp"
+        app:layout_anchor="@id/edittext"
+        app:layout_anchorGravity="center|bottom" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/speak"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/mic"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="mini"
+        app:elevation="6dp"
+        app:layout_anchor="@id/speak2"
+        app:layout_anchorGravity="left|bottom" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/del"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/del"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="mini"
+        app:elevation="6dp"
+        app:layout_anchor="@id/speak"
+        app:layout_anchorGravity="left|top" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/spe"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/mic"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="mini"
+        app:elevation="6dp"
+        app:layout_anchor="@id/speak2"
+        app:layout_anchorGravity="right|bottom" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/talk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/mic"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="mini"
+        app:elevation="6dp"
+        app:layout_anchor="@id/spe"
+        app:layout_anchorGravity="right|top" />
+
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab1"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="mini"
+        app:elevation="6dp"
+        app:layout_anchor="@id/speak1"
+        app:layout_anchorGravity="left|top" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/syn"
+        app:backgroundTint="#ffffff"
+        app:fabSize="mini"
+        app:elevation="6dp"
+        app:layout_anchor="@id/fab1"
+        app:layout_anchorGravity="left|bottom" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab11"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/mic"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="mini"
+        app:elevation="6dp"
+        app:layout_anchor="@id/speak1"
+        app:layout_anchorGravity="right|top" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/antonym"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ant"
+        app:backgroundTint="#ffffff"
+        app:fabSize="mini"
+        app:elevation="6dp"
+        app:layout_anchor="@id/fab11"
+        app:layout_anchorGravity="right|bottom" />
+
+
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>
