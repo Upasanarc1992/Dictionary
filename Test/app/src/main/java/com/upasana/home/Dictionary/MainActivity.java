@@ -32,6 +32,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -95,11 +96,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         word.setOnEditorActionListener(this);
 
 
+
         n = 0;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void onClick(View v) {
+
+        String validate[]=word.getText().toString().trim().split(" ");
+        if (validate.length>1)
+            Toast.makeText(this,"Please enter one word .. ",Toast.LENGTH_SHORT).show();
+        else{
         if (v.equals(l))
             hide();
         if (v.equals(fab_go)) {
@@ -130,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             tv.setText("");
             word.setText("");
         }
+        }
     }
 
     public void submit(View v) {
@@ -139,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             String w = word.getText().toString().trim().toLowerCase();
             if (n == 1)
-                new LongOperation().execute("http://dictionary.cambridge.org/dictionary/english/" + w);
+                new LongOperation().execute("http://www.dictionary.com/browse/"+w+"?s=t" );
             if (n == 2 || n == 3)
                 new LongOperation().execute("http://www.thesaurus.com/browse/" + w);
 
@@ -188,20 +196,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         protected void onPostExecute(String result) {
             String input = word.getText().toString().trim().toLowerCase();
             dismissDialog(progress_bar_type);
+
             getMeaning(result, input);
 
 
         }
 
         private void getMeaning(String result, String input) {
-
             String meaning = "Sorry, Could not understand!";
+            stop_speech();
             try {
+                //<meta name="description" content="Hi definition,
                 if (n == 1) {
-                    String[] temp = result.split("what is " + input + ":");
-                    temp[1] = temp[1].replace(".", ":");
-                    String[] temp2 = temp[1].split(":");
-                    temp2[0] = temp2[0].replace("&hellip", "");
+                    //result=result.toLowerCase();
+                    String spl="<meta name=\"description\" content=\"";
+                    String[] temp = result.split(spl);
+                    String [] t=temp[1].split("definition, ");
+                    t[1] = t[1].replace("(", "");
+                    String[] temp2 = t[1].split("See more");
+                    temp2[0] = temp2[0].replace(")", "");
                     meaning = temp2[0];
                     n = 0;
 
@@ -252,13 +265,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             }
                         }
                     }
-                    meaning = meaning.replace("&quot", "'");
-                    meaning = meaning.replace("%20", " ");
-                    meaning = meaning.replace("%27", "'");
+                    meaning= URLDecoder.decode(meaning, "UTF-8");
 
 
                 }
             } catch (Exception e) {
+                Toast.makeText(MainActivity.this,e.toString(),Toast.LENGTH_SHORT).show();
             }
             ;
             tv.setText(meaning);
@@ -346,5 +358,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 return null;
         }
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        stop_speech();
+    }
+
+    public void stop_speech()
+    {
+        if(t1.isSpeaking())
+            t1.stop();
     }
 }
